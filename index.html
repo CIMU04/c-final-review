@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C语言期末冲刺：易错题与核心知识点深度解析</title>
+<style>
+  :root{--ink:#1b1b1b;--line:#d8d5ce;--accent:#8c2b22;--muted:#6b6862;
+        --bad-bg:#fbf0ee;--bad-line:#c0554a;--good-bg:#eef6f1;--good-line:#2f7a5a;
+        --code-bg:#f6f6f3;--chip:#f2f0eb;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:#ecebe7;color:var(--ink);
+       font-family:"Noto Serif CJK SC","Source Han Serif SC","Songti SC",SimSun,serif;
+       font-size:10.6pt;line-height:1.72;}
+  .doc{width:210mm;max-width:100%;margin:26px auto;padding:17mm 19mm 20mm;
+       background:#fff;box-shadow:0 3px 22px rgba(0,0,0,.13);}
+  .toolbar{position:fixed;right:22px;top:22px;z-index:9;
+           font-family:system-ui,"Microsoft YaHei",sans-serif;}
+  .toolbar button{border:1px solid #d5d3cd;background:#fff;color:#333;border-radius:6px;
+                  padding:8px 14px;font-size:13px;cursor:pointer;box-shadow:0 1px 5px rgba(0,0,0,.08);}
+  .toolbar button:hover{border-color:var(--accent);color:var(--accent);}
+  header{text-align:center;border-bottom:2.5px solid var(--ink);padding-bottom:14px;margin-bottom:16px;}
+  .eyebrow{font-size:9pt;letter-spacing:.32em;color:var(--accent);margin:0 0 7px;}
+  h1{font-size:20pt;letter-spacing:.06em;margin:0 0 6px;font-weight:700;}
+  .sub{font-size:9.5pt;color:var(--muted);margin:0;}
+  .notice{background:#faf7f2;border-left:3px solid var(--accent);padding:10px 14px;
+          font-size:9.2pt;color:#4a4038;margin:0 0 16px;}
+  .notice b{color:var(--accent);}
+  .toc{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:0 0 20px;
+       font-family:system-ui,"Microsoft YaHei",sans-serif;font-size:9.2pt;}
+  .toc a{display:block;border:1px solid var(--line);border-radius:6px;padding:7px 10px;
+         color:var(--ink);text-decoration:none;background:#fcfbf9;}
+  .toc a:hover{border-color:var(--accent);color:var(--accent);}
+  .toc a span{color:var(--accent);margin-right:6px;}
+  .chips{font-family:system-ui,"Microsoft YaHei",sans-serif;font-size:8.6pt;
+         display:flex;gap:7px;flex-wrap:wrap;margin:0 0 18px;color:var(--muted);}
+  .chips i{font-style:normal;border-radius:4px;padding:2px 7px;border:1px solid var(--line);}
+  .c-red{background:#fbeae8;color:#a33b30;border-color:#eecfc9 !important;}
+  .c-amber{background:#faf1e2;color:#8a5a12;border-color:#ecdcbb !important;}
+  .c-green{background:#eaf5ee;color:#2f6d52;border-color:#cfe6d9 !important;}
+  .c-gray{background:#f1efe9;color:#6b6862;}
+  h2{font-size:14pt;margin:26px 0 12px;padding:7px 0 7px 12px;
+     border-left:5px solid var(--accent);background:#f7f5f1;letter-spacing:.03em;}
+  h2 small{float:right;font-size:9pt;font-weight:400;color:var(--muted);
+           letter-spacing:0;margin-right:10px;}
+  .card{border:1px solid var(--line);border-radius:8px;padding:13px 15px 14px;margin:0 0 14px;
+        break-inside:avoid;}
+  .card h3{font-size:11.4pt;margin:0 0 10px;font-weight:700;line-height:1.5;}
+  .card h3 em{font-style:normal;color:var(--accent);margin-right:8px;}
+  .tag{font-family:system-ui,"Microsoft YaHei",sans-serif;font-size:8.4pt;font-weight:400;
+       border-radius:4px;padding:2px 7px;margin-left:8px;vertical-align:2px;border:1px solid var(--line);}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:0 0 10px;}
+  .bad,.good{border-radius:6px;padding:9px 12px 10px;font-size:10pt;}
+  .bad{background:var(--bad-bg);border-left:3px solid var(--bad-line);}
+  .good{background:var(--good-bg);border-left:3px solid var(--good-line);}
+  .lab{font-family:system-ui,"Microsoft YaHei",sans-serif;font-size:8.8pt;
+       letter-spacing:.08em;margin-bottom:4px;font-weight:500;}
+  .bad .lab{color:#a33b30;} .good .lab{color:#2f6d52;}
+  .bad p,.good p{margin:0;}
+  .bad code,.good code{font-family:Consolas,"Courier New",monospace;font-size:9.2pt;}
+  .deep{font-size:9.8pt;color:#38352f;margin:0 0 8px;}
+  .deep b{color:var(--accent);}
+  .deep ol{margin:5px 0 0;padding-left:1.5em;}
+  .deep ol li{margin-bottom:3px;}
+  .code-label{font-family:system-ui,"Microsoft YaHei",sans-serif;font-size:8.8pt;
+              color:#2f6d52;letter-spacing:.06em;margin:8px 0 4px;}
+  pre.code{background:var(--code-bg);border-left:3px solid #cfc9bd;padding:9px 13px;margin:0;
+           font-family:Consolas,"Courier New",monospace;font-size:9.1pt;line-height:1.55;
+           white-space:pre-wrap;overflow-wrap:anywhere;border-radius:0 5px 5px 0;}
+  code{font-family:Consolas,"Courier New",monospace;font-size:9.2pt;
+       background:#f4f2ed;padding:1px 4px;border-radius:3px;}
+  .note{font-size:8.9pt;color:var(--muted);border-top:1px dashed var(--line);
+        padding-top:6px;margin:9px 0 0;}
+  .note b{color:var(--accent);}
+  .quick{width:100%;border-collapse:collapse;font-size:9.1pt;margin-top:10px;}
+  .quick th,.quick td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top;}
+  .quick th{background:#f4f2ee;font-weight:600;white-space:nowrap;}
+  .quick td:first-child{white-space:nowrap;color:var(--muted);}
+  footer{margin-top:28px;border-top:1px solid var(--line);padding-top:9px;
+         font-size:8.5pt;color:var(--muted);text-align:center;}
+  @media print{
+    body{background:#fff;font-size:10pt;}
+    .doc{width:auto;margin:0;padding:12mm 14mm;box-shadow:none;}
+    .toolbar{display:none;}
+    h2{break-after:avoid;}
+    .card,.cmp,.quick tr{break-inside:avoid;}
+    h2{background:#f7f5f1 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .bad,.good,.tag,.c-red,.c-amber,.c-green{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  }
+  @media(max-width:760px){
+    .doc{padding:20px 18px;margin:0;}
+    .cmp{grid-template-columns:1fr;}
+    .toc{grid-template-columns:repeat(2,1fr);}
+    .toolbar{position:static;margin:12px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar"><button onclick="window.print()">打印 / 存为 PDF</button></div>
+
+<article class="doc">
+  <header>
+    <p class="eyebrow">信盈达 · C 语言期末冲刺</p>
+    <h1>易错题与核心知识点深度解析</h1>
+    <p class="sub">按模块分类 · 「错误表现 × 正确逻辑 / 代码」对照 · 6 大模块 17 个考点</p>
+  </header>
+
+  <p class="notice"><b>怎么用这份文档：</b>每张卡片左红右绿——左边是考场上最容易踩的坑，右边是标准结论或正确代码，下面才是原理。复习时先遮住右侧自己答一遍，再看解析。标签标出该考点在你两份卷子里的表现，<b>「两卷连错」的两张卡建议优先背</b>。</p>
+
+  <nav class="toc">
+    <a href="#m1"><span>模块一</span>数据类型与内存大小</a>
+    <a href="#m2"><span>模块二</span>指针与数组（重灾区）</a>
+    <a href="#m3"><span>模块三</span>函数与参数传递</a>
+    <a href="#m4"><span>模块四</span>运算符与宏定义</a>
+    <a href="#m5"><span>模块五</span>流程控制与文件操作</a>
+    <a href="#m6"><span>模块六</span>编程算法逻辑</a>
+  </nav>
+  <div class="chips">
+    <span>标签说明：</span>
+    <i class="c-red">两卷连错</i><i class="c-amber">卷一错题</i>
+    <i class="c-green">已补上</i><i class="c-gray">补充考点 / 已掌握</i>
+  </div>
+
+  <!-- ============ 模块一 ============ -->
+  <h2 id="m1">模块一　数据类型与内存大小<small>3 个考点</small></h2>
+
+  <div class="card">
+    <h3><em>1.1</em>结构体内存对齐（高频大题 / 选择题）<span class="tag c-green">已补上</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p>计算 <code>struct Node { char a; int b; short c; };</code> 时，算出 <b>8 或 10 字节</b>（漏算中间填充或漏算尾部补齐）。</p></div>
+      <div class="good"><div class="lab">正确结果</div><p>64 位系统默认对齐下，该结构体大小为 <b>12 字节</b>。</p></div>
+    </div>
+    <div class="deep"><b>三步走口诀：找最大 → 排座位 → 算总长</b>
+      <ol>
+        <li><b>找对齐数：</b>系统默认 8，最大成员 <code>int</code> 为 4，取较小者 → 对齐数 <b>4</b>。</li>
+        <li><b>排座位（看偏移量）：</b><code>char a</code> 偏移 0，占 1 字节（位置 0）；<code>int b</code> 自身 4，偏移必须是 4 的倍数，位置 1 不是 → 补 3 个空字节，b 放在 <b>4~7</b>；<code>short c</code> 自身 2，位置 8 是 2 的倍数 → 放在 <b>8~9</b>。</li>
+        <li><b>算总长：</b>当前 10 字节，必须是最大对齐数 4 的整数倍 → 补齐到 <b>12 字节</b>。</li>
+      </ol>
+    </div>
+    <p class="note">对照练习：<code>struct A { char a; int b; };</code> → 1 + 补3 + 4 = <b>8</b>；<code>struct S { int a; char b; };</code> → 4 + 1 + 补3 = <b>8</b>。</p>
+  </div>
+
+  <div class="card">
+    <h3><em>1.2</em>数据溢出与回环<span class="tag c-gray">补充考点</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p>认为 <code>char a = 128; printf("%d", a);</code> 输出 <b>128</b>。</p></div>
+      <div class="good"><div class="lab">正确结果</div><p>输出 <b>-128</b>。想输出 128，必须写 <code>unsigned char</code>。</p></div>
+    </div>
+    <div class="deep"><b>原理：</b>常见平台上 <code>char</code> 是有符号的，范围 -128~127。128 的二进制是 <code>1000 0000</code>，最高位为 1 代表负数，按补码规则它表示的就是 -128，超出范围后从最小端回环。</div>
+    <p class="note"><b>严谨提示：</b><code>char</code> 是否有符号由实现定义；GCC / MSVC 的 x86 默认 signed，上述结论成立。写跨平台代码时请显式用 <code>signed char</code> / <code>unsigned char</code>。</p>
+  </div>
+
+  <div class="card">
+    <h3><em>1.3</em>sizeof 与 strlen 的区别<span class="tag c-gray">已掌握</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p>把 <code>char str[] = "hello";</code> 的 <code>sizeof</code> 和 <code>strlen</code> 都算成 <b>5</b>。</p></div>
+      <div class="good"><div class="lab">正确结果</div><p><code>sizeof(str)</code> = <b>6</b>（含末尾 <code>'\0'</code>）；<code>strlen(str)</code> = <b>5</b>（遇 <code>'\0'</code> 停止，不计入）。</p></div>
+    </div>
+    <div class="deep"><b>一句话：</b><code>sizeof</code> 是运算符，算的是「占多少内存」；<code>strlen</code> 是库函数，算的是「到 <code>'\0'</code> 之前有几个字符」。若写成 <code>char *p = "hello";</code>，<code>sizeof(p)</code> 就变成指针大小 8，与字符串长度无关。</div>
+  </div>
+
+  <!-- ============ 模块二 ============ -->
+  <h2 id="m2">模块二　指针与数组（重灾区）<small>3 个考点</small></h2>
+
+  <div class="card">
+    <h3><em>2.1</em>字符串常量区不可修改<span class="tag c-gray">已掌握</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p>认为 <code>char *p = "hello"; p[1] = 'E';</code> 可以正常运行。</p></div>
+      <div class="good"><div class="lab">正确结果</div><p>程序崩溃（段错误）。只有 <code>char buf[] = "hello";</code> 才能改。</p></div>
+    </div>
+    <div class="deep"><b>原理：</b><code>char *p = "hello";</code> 中的 <code>"hello"</code> 存放在<b>只读常量区</b>，p 只是指向它，绝对不允许写入；<code>char buf[] = "hello";</code> 是在<b>栈区</b>申请了一份可写副本。规范写法是 <code>const char *p = "hello";</code>，让编译器提前拦住误写。</div>
+    <p class="note">对应原卷找错/选择题：<code>p[0] = 'H';</code> 是问题行，<code>a[0] = 'W';</code> 合法。</p>
+  </div>
+
+  <div class="card">
+    <h3><em>2.2</em>数组传参的退化陷阱<span class="tag c-gray">已掌握（概念）</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p>形参写 <code>int arr[]</code>，却在函数内部用 <code>sizeof(arr) / sizeof(arr[0])</code> 求数组长度。</p></div>
+      <div class="good"><div class="lab">正确结果</div><p><code>sizeof(arr)</code> 得到的是<b>指针大小 8 字节</b>（64 位），该表达式恒为 <b>2</b>（8/4），与真实长度无关。必须额外传 <code>len</code> 参数。</p></div>
+    </div>
+    <div class="deep"><b>原理：</b>数组作为函数参数传递时会<b>自动退化为指针</b>，函数内部拿到的只是一个地址，并不知道数组有多长。<code>int arr[]</code> 与 <code>int *arr</code> 作形参完全等价。<br>正确写法：<code>void f(int arr[], int len) { for (int i = 0; i &lt; len; i++) ... }</code></div>
+    <p class="note"><b>已校正：</b>原稿写「结果是指针大小（64 位下 8 字节）」，严格说是 <code>sizeof(arr)</code> 为 8，整个比值的结果是 2；这里按标准 C 表述更正，结论「永远算不对」不变。</p>
+  </div>
+
+  <div class="card">
+    <h3><em>2.3</em>指针偏移与二维数组<span class="tag c-amber">卷一错题</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p>把 <code>*(a + 1) + 2</code> 当作去取数组里的<b>元素值</b>。</p></div>
+      <div class="good"><div class="lab">正确结果</div><p>它是个<b>地址</b>。要取值必须再解一层：<code>*(*(a + 1) + 2)</code>，等价于 <code>a[1][2]</code>。</p></div>
+    </div>
+    <div class="deep"><b>原理：</b><code>int a[3][4];</code> 中 <code>a + 1</code> 是「指向第 1 行（4 个 int 的数组）」的指针；<code>*(a + 1)</code> 得到第 1 行这个数组，在表达式中退化为指向 <code>a[1][0]</code> 的 <code>int *</code>；再加 2 仍然只是地址 <code>&amp;a[1][2]</code>，外面必须补 <code>*</code> 才拿到值。<br>另外两个等价写法：<code>*(a[1] + 2)</code>、<code>*(&amp;a[0][0] + 6)</code>（按一维连续存储算偏移 1*4+2 = 6）。</div>
+    <p class="note">同理：<code>int *p = &amp;a[1];</code> 时 <code>p[2]</code> 是 <code>a[3]</code>，下标永远相对 p 的起点，不相对数组首元素。</p>
+  </div>
+
+  <!-- ============ 模块三 ============ -->
+  <h2 id="m3">模块三　函数与参数传递<small>2 个考点</small></h2>
+
+  <div class="card">
+    <h3><em>3.1</em>指针传参的「形参陷阱」<span class="tag c-gray">基础</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p><code>void getMemory(char *p) { p = malloc(10); }</code>，认为主函数能拿到分配的空间。</p></div>
+      <div class="good"><div class="lab">正确结果</div><p>主函数实参依然是 <code>NULL</code>，且这块内存<b>再也找不到 → 内存泄漏</b>。</p></div>
+    </div>
+    <div class="deep"><b>原理：</b>函数内的 <code>p</code> 只是实参的一份<b>拷贝</b>，<code>p = ...</code> 只改了局部变量的指向。要修改外部指针的指向，必须传递<b>二级指针</b>（或返回新地址）。</div>
+    <div class="code-label">正确代码</div>
+    <pre class="code">void getMemory(char **p) {
+    *p = malloc(10);
+}
+/* 调用：char *buf = NULL; getMemory(&amp;buf); */</pre>
+    <p class="note">同型考点：<code>void my_strcpy(char *dest, char *src) { dest = src; }</code> 也是同一个错——改副本，一个字符都没拷贝。</p>
+  </div>
+
+  <div class="card">
+    <h3><em>3.2</em>结构体指针访问数组成员<span class="tag c-amber">卷一编程题错题</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p>传入 <code>struct Student *p</code>（实际指向结构体数组），函数里写 <code>scanf("%s", p-&gt;stu[i].name);</code>。</p></div>
+      <div class="good"><div class="lab">正确结果</div><p><b>编译报错</b>：结构体里没有 <code>stu</code> 成员。应写 <code>p[i].name</code> 或 <code>(p + i)-&gt;name</code>。</p></div>
+    </div>
+    <div class="deep"><b>原理：</b><code>p</code> 指向的是<b>数组的第 0 个元素</b>，<code>p + i</code> 才走到第 i 个元素。结构体里只有 <code>name</code>、<code>id</code>、<code>scores[3]</code>，没有名为 <code>stu</code> 的字段。<br>配套细节：<code>scanf("%d", &amp;p[i].id)</code> 要取地址；<code>p[i].name</code> 是数组名，本身退化为地址，不用加 <code>&amp;</code>；3 门课要用循环写 <code>p[i].scores[j]</code>。</div>
+  </div>
+
+  <!-- ============ 模块四 ============ -->
+  <h2 id="m4">模块四　运算符与宏定义<small>4 个考点</small></h2>
+
+  <div class="card">
+    <h3><em>4.1</em>宏定义的「纯粹替换」<span class="tag c-gray">已掌握</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p><code>#define M(a) a * a</code>，计算 <code>M(3+4)</code> 得出 <b>49</b>。</p></div>
+      <div class="good"><div class="lab">正确结果</div><p><b>19</b>。宏不做计算，只做文本替换。</p></div>
+    </div>
+    <div class="deep"><b>展开过程：</b><code>M(3+4)</code> → <code>3 + 4 * 3 + 4</code>，先算乘法 → <code>3 + 12 + 4 = 19</code>。<br><b>正确写法：</b>参数与整体都要加括号 → <code>#define M(a) ((a) * (a))</code>。</div>
+  </div>
+
+  <div class="card">
+    <h3><em>4.2</em>宏定义与自增运算（未定义行为）<span class="tag c-amber">卷一错题</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p><code>#define CUBE(x) (x * x * x)</code> 传入 <code>n++</code>，算出 <b>24 且认为 n 变成 4</b>。</p></div>
+      <div class="good"><div class="lab">正确结果</div><p>展开成 <code>(n++ * n++ * n++)</code>，属<b>未定义行为</b>：不同编译器结果不同，GCC 下通常是结果 24、n 为 <b>5</b>。考试遇到直接判错或避开。</p></div>
+    </div>
+    <div class="deep"><b>原理：</b>同一表达式里对 <code>n</code> 三次自增，中间没有序列点，标准不规定求值顺序。稳妥写法是先算好值再传：<code>int t = n; int r = CUBE(t); n++;</code>，且宏本身应写成 <code>((x)*(x)*(x))</code>。</div>
+  </div>
+
+  <div class="card">
+    <h3><em>4.3</em>复合赋值运算符<span class="tag c-red">两卷连错 · 优先背</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p><code>int a=10; a += a -= a * a;</code> 算出 <b>0</b> 或 <b>-80</b>。</p></div>
+      <div class="good"><div class="lab">正确结果</div><p><b>-180</b>。</p></div>
+    </div>
+    <div class="deep"><b>从右向左拆：</b>
+      <ol>
+        <li>先算内层 <code>a -= a * a</code>：<code>a * a = 100</code>，<code>a = 10 - 100 = -90</code>，此时 <b>a 立刻变成 -90</b>，整个子表达式的值也是 -90。</li>
+        <li>再算外层 <code>a += (-90)</code>：此时 a 已是 -90，<code>-90 + (-90) = -180</code>。</li>
+      </ol>
+      同型题：<code>a *= 2 + 3</code> 等价于 <code>a = a * (2 + 3)</code>，不是 <code>a * 2 + 3</code> —— <b>复合赋值优先级低于算术运算</b>。
+    </div>
+    <p class="note"><b>严谨提示：</b>按 C 标准，同一表达式内对 <code>a</code> 两次修改且无序列点属未定义行为；期末与笔试一律按教材结论 <b>-180</b> 记忆即可。</p>
+  </div>
+
+  <div class="card">
+    <h3><em>4.4</em>短路特性<span class="tag c-green">已补上</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p><code>int x=5, y=0; if (x++ || ++y)</code> 认为 y 会变成 <b>1</b>。</p></div>
+      <div class="good"><div class="lab">正确结果</div><p>y 依然是 <b>0</b>（x 变成 6）。</p></div>
+    </div>
+    <div class="deep"><b>原理：</b><code>x++</code> 先取旧值 5（为真），<code>||</code> 左边为真已能决定结果，发生<b>短路</b>，右边 <code>++y</code> 根本不执行。<br>镜像题：<code>if (x++ &amp;&amp; ++y)</code> 且 <code>x=0</code> 时，左值为 0（假），<code>++y</code> 同样被跳过，x 变 1、y 仍为 0。</div>
+    <p class="note">答题术语写「<b>短路 / 短路求值</b>」，不要写「前置条件判断」这类自造说法。</p>
+  </div>
+
+  <!-- ============ 模块五 ============ -->
+  <h2 id="m5">模块五　流程控制与文件操作<small>2 个考点</small></h2>
+
+  <div class="card">
+    <h3><em>5.1</em>循环中的 break 和 continue<span class="tag c-gray">补充考点</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p><code>for(i=1;i&lt;=5;i++) { if(i%2==0) continue; if(i==5) break; printf("%d ",i); }</code> 认为输出 <b>5</b>。</p></div>
+      <div class="good"><div class="lab">正确结果</div><p>输出 <b>1 3</b>。</p></div>
+    </div>
+    <div class="deep"><b>逐步走：</b><code>i=1</code> 打印 1；<code>i=2, 4</code> 遇 <code>continue</code> 直接结束本次循环，不打印；<code>i=3</code> 打印 3；<code>i=5</code> 遇 <code>break</code> 整个循环终止，后续打印不执行。<br><b>区别：</b><code>continue</code> 跳过「本次剩余语句」，<code>break</code> 结束「整个循环」。</div>
+  </div>
+
+  <div class="card">
+    <h3><em>5.2</em>文件指针回到开头<span class="tag c-red">两卷连错 · 优先背</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p>试图用 <code>fseek(fp, size, SEEK_CUR)</code> 回到文件开头；或把函数名写成 <code>fwind(fp)</code>。</p></div>
+      <div class="good"><div class="lab">正确结果 / 代码</div><p>直接写 <code>rewind(fp);</code> 或 <code>fseek(fp, 0, SEEK_SET);</code>。C 库里<b>没有 fwind 这个函数</b>。</p></div>
+    </div>
+    <div class="deep"><b>三个定位常量：</b><code>SEEK_SET</code> 文件头、<code>SEEK_CUR</code> 当前位置、<code>SEEK_END</code> 文件尾。<code>SEEK_CUR</code> 是<b>相对当前位置</b>偏移，不可能一步回到开头。<br>顺带记模式：<code>"w+"</code> 清空原内容、指针在头；<code>"a+"</code> 保留原内容、可读可写、写位置在末尾；文件不存在时 <code>"w+"</code> / <code>"a+"</code> 都会新建，不会返回 NULL。</div>
+  </div>
+
+  <!-- ============ 模块六 ============ -->
+  <h2 id="m6">模块六　编程算法逻辑<small>3 个考点</small></h2>
+
+  <div class="card">
+    <h3><em>6.1</em>找最值（打擂台法）<span class="tag c-amber">卷一编程题错题</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p>用类似冒泡的交换逻辑找最大值：<code>if (a[i] &gt; a[i+1]) { a[i+1] = a[i]; }</code> —— 既会越界访问 <code>i+1</code>，又破坏了原数据，还根本没求总分。</p></div>
+      <div class="good"><div class="lab">正确逻辑</div><p>只用一个 <code>max_index</code> <b>记录下标</b>，全程不改数组；每个学生先累加 3 门课得总分，再与当前最高分比较。</p></div>
+    </div>
+    <div class="code-label">正确代码</div>
+    <pre class="code">int max_index = 0; // 假设第0个最大
+for (int i = 1; i &lt; n; i++) {
+    if (stuArr[i].score &gt; stuArr[max_index].score) {
+        max_index = i; // 只记录下标，绝不更改原数据
+    }
+}
+// 结束后打印 stuArr[max_index]</pre>
+    <p class="note">期末编程题要求的是「<b>总分</b>最高」，务必先用内层循环 <code>sum += stuArr[i].scores[j]</code> 累加，再打擂台；循环写 <code>i &lt; n</code>，不要出现 <code>i+1</code>。</p>
+  </div>
+
+  <div class="card">
+    <h3><em>6.2</em>字符串 / 数组赋值<span class="tag c-amber">卷一、卷二找错题</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p><code>char str[10]; str = "hello";</code> 或 <code>s[0].name = "张三";</code>；还有 <code>s[0].score = {90, 85, 88};</code>。</p></div>
+      <div class="good"><div class="lab">正确结果 / 代码</div><p>全部<b>编译报错</b>：数组名是常量，不能被整体赋值；初始化列表只能在定义变量时使用。用 <code>strcpy(str, "hello");</code> 或逐元素赋值 / 循环。</p></div>
+    </div>
+    <div class="code-label">正确代码</div>
+    <pre class="code">#include &lt;string.h&gt;
+strcpy(str, "hello");          /* 普通字符数组 */
+strcpy(s[0].name, "张三");     /* 结构体里的字符数组 */
+s[0].score[0] = 90;           /* 数组成员逐个赋值 */
+s[0].score[1] = 85;
+s[0].score[2] = 88;</pre>
+    <div class="deep"><b>顺带记：</b>字符串拷贝必须连 <code>'\0'</code> 一起复制，标准写法 <code>while ((*dest++ = *src++) != '\0');</code>；用 <code>strcpy</code> 时要包含 <code>&lt;string.h&gt;</code> 并保证 dest 空间足够。</div>
+  </div>
+
+  <div class="card">
+    <h3><em>6.3</em>冒泡排序（结构体版）<span class="tag c-gray">补充考点</span></h3>
+    <div class="cmp">
+      <div class="bad"><div class="lab">错误表现</div><p>排序时<b>只交换分数</b>，结果姓名和分数对不上号。</p></div>
+      <div class="good"><div class="lab">正确逻辑</div><p>比较用某个字段，交换时必须<b>整个结构体一起换</b>（连名带分一起搬）。</p></div>
+    </div>
+    <div class="code-label">正确代码</div>
+    <pre class="code">for (i = 0; i &lt; n - 1; i++) {
+    for (j = 0; j &lt; n - 1 - i; j++) {
+        if (stuArr[j].score &gt; stuArr[j+1].score) {
+            struct Student temp = stuArr[j]; // 整个结构体一起换
+            stuArr[j] = stuArr[j+1];
+            stuArr[j+1] = temp;
+        }
+    }
+}</pre>
+    <div class="deep"><b>两个易错点：</b>内层上界是 <code>n - 1 - i</code>（防止访问 <code>j+1</code> 越界）；结构体可以直接整体赋值，<code>temp</code> 的类型必须写全 <code>struct Student</code>。</div>
+  </div>
+
+  <!-- ============ 速查表 ============ -->
+  <h2 id="quick">考前速查表<small>17 个考点一句话结论</small></h2>
+  <table class="quick">
+    <tr><th>模块</th><th>考点</th><th>一句话记住</th></tr>
+    <tr><td>一</td><td>结构体对齐</td><td>找最大 → 排座位 → 总长补到对齐数整数倍；<code>char/int/short</code> = 12</td></tr>
+    <tr><td>一</td><td>char 溢出</td><td><code>char a=128</code> 输出 -128；要 128 用 <code>unsigned char</code></td></tr>
+    <tr><td>一</td><td>sizeof / strlen</td><td><code>sizeof</code> 含 <code>'\0'</code> = 6；<code>strlen</code> 不含 = 5</td></tr>
+    <tr><td>二</td><td>字符串常量</td><td><code>char *p="..."</code> 只读不可改；<code>char a[]="..."</code> 可改</td></tr>
+    <tr><td>二</td><td>数组传参退化</td><td>函数内 <code>arr</code> 是指针，长度必须另传 <code>len</code></td></tr>
+    <tr><td>二</td><td>二维数组解引用</td><td><code>*(a+1)+2</code> 是地址；取值要 <code>*(*(a+1)+2)</code></td></tr>
+    <tr><td>三</td><td>指针形参</td><td>改外部指针的指向，必须传二级指针 <code>**p</code></td></tr>
+    <tr><td>三</td><td>结构体数组</td><td><code>p[i].name</code> 或 <code>(p+i)-&gt;name</code>，没有 <code>p-&gt;stu[i]</code></td></tr>
+    <tr><td>四</td><td>宏替换</td><td><code>M(3+4)</code> = <code>3+4*3+4</code> = 19；写成 <code>((a)*(a))</code></td></tr>
+    <tr><td>四</td><td>宏 + 自增</td><td><code>CUBE(n++)</code> 未定义行为，考场判错；GCC 常见 24 / n=5</td></tr>
+    <tr><td>四</td><td>复合赋值</td><td>右结合、优先级最低；<code>a += a -= a*a</code> = -180</td></tr>
+    <tr><td>四</td><td>短路求值</td><td>左边能定结果，右边不执行；<code>||</code> 左真、<code>&amp;&amp;</code> 左假都短路</td></tr>
+    <tr><td>五</td><td>break / continue</td><td><code>continue</code> 跳本次，<code>break</code> 结束整个循环；输出 1 3</td></tr>
+    <tr><td>五</td><td>文件复位</td><td><code>rewind(fp)</code> / <code>fseek(fp,0,SEEK_SET)</code>；没有 fwind</td></tr>
+    <tr><td>六</td><td>打擂台</td><td>只记 <code>max_index</code>，不改原数组，不写 <code>i+1</code></td></tr>
+    <tr><td>六</td><td>数组赋值</td><td>数组名是常量，用 <code>strcpy</code> 或逐元素赋值</td></tr>
+    <tr><td>六</td><td>结构体排序</td><td>比较按字段，交换整个结构体；内循环上界 <code>n-1-i</code></td></tr>
+  </table>
+
+  <footer>C 语言期末冲刺 · 易错题与核心知识点深度解析 · 建议配合《期末全真压轴模拟卷（二）》一起使用</footer>
+</article>
+
+</body>
+</html>
