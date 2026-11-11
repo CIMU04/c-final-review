@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="cWiW0dRdPX5d9BxT11HAjO"><head data-page-node-id="w47qjyIkcgF8iAn8iLXcpp">
+<meta charset="UTF-8" data-page-node-id="6ECAa50hTkcrNeRnRBW4Pc">
+<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="OaLRSxsG4NaBeAUTBEg4eO">
+<title data-page-node-id="tjAfmJCmarXoNp2tbtLNMH">信盈达 C 语言期末 · 错题强化模拟卷（二）</title>
+<style data-page-node-id="UYnSN1Vf0slKK9B1dVWpCK">
+  :root{--ink:#1b1b1b;--line:#bdbdbd;--accent:#8c2b22;--muted:#666;--code-bg:#f6f6f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:#ecebe7;color:var(--ink);
+       font-family:"Noto Serif CJK SC","Source Han Serif SC","Songti SC",SimSun,serif;
+       font-size:10.5pt;line-height:1.72;}
+  .paper{width:210mm;min-height:297mm;margin:26px auto;padding:17mm 19mm 20mm;
+         background:#fff;box-shadow:0 3px 22px rgba(0,0,0,.13);}
+  .toolbar{position:fixed;right:22px;top:22px;z-index:9;display:flex;gap:8px;
+           font-family:system-ui,"Microsoft YaHei",sans-serif;}
+  .toolbar button{border:1px solid #d5d3cd;background:#fff;color:#333;border-radius:6px;
+                  padding:8px 14px;font-size:13px;cursor:pointer;box-shadow:0 1px 5px rgba(0,0,0,.08);}
+  .toolbar button:hover{border-color:var(--accent);color:var(--accent);}
+  header{text-align:center;border-bottom:2.5px solid var(--ink);padding-bottom:12px;margin-bottom:14px;}
+  .eyebrow{font-size:9pt;letter-spacing:.32em;color:var(--accent);margin:0 0 6px;}
+  h1{font-size:20pt;letter-spacing:.12em;margin:0 0 4px;font-weight:700;}
+  .sub{font-size:9.5pt;color:var(--muted);margin:0;}
+  .meta{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:9.5pt;}
+  .meta td{border:1px solid var(--line);padding:6px 9px;}
+  .meta .k{color:var(--muted);white-space:nowrap;width:64px;}
+  .scoreboard{width:100%;border-collapse:collapse;font-size:9pt;margin:0 0 18px;}
+  .scoreboard th,.scoreboard td{border:1px solid var(--line);padding:5px 4px;text-align:center;}
+  .scoreboard th{background:#f4f2ee;font-weight:600;}
+  .notice{background:#faf7f2;border-left:3px solid var(--accent);padding:9px 13px;
+          font-size:9pt;color:#4a4038;margin:0 0 18px;}
+  .notice b{color:var(--accent);}
+  h2{font-size:12.5pt;margin:22px 0 10px;padding-bottom:5px;border-bottom:1px solid var(--ink);
+     letter-spacing:.04em;}
+  h2 span{float:right;font-size:9.5pt;font-weight:400;color:var(--muted);letter-spacing:0;}
+  ol.q{padding-left:1.7em;margin:0;}
+  ol.q>li{margin:0 0 11px;padding-left:.1em;}
+  .opts{margin:3px 0 0;padding-left:0;list-style:none;display:grid;
+        grid-template-columns:1fr 1fr;column-gap:18px;font-size:10pt;}
+  .opts li{white-space:normal;}
+  .blank{border-bottom:1px solid #333;display:inline-block;min-width:96px;}
+  pre.code{background:var(--code-bg);border-left:3px solid #cfc9bd;padding:9px 13px;margin:7px 0;
+           font-family:Consolas,"Courier New",monospace;font-size:9.2pt;line-height:1.55;
+           white-space:pre-wrap;overflow-wrap:anywhere;}
+  .fill li{margin-bottom:9px;}
+  .answers{display:none;}
+  body.show-answers .answers{display:block;}
+  .answers h2{color:var(--accent);border-color:var(--accent);}
+  .ans-grid{columns:2;column-gap:26px;font-size:9.6pt;}
+  .ans-grid p{margin:0 0 6px;break-inside:avoid;}
+  .ans-grid b{color:var(--accent);}
+  .explain{font-size:9.3pt;color:#444;line-height:1.7;}
+  .explain p{margin:0 0 8px;}
+  footer{margin-top:26px;border-top:1px solid var(--line);padding-top:9px;
+         font-size:8.5pt;color:var(--muted);text-align:center;}
+  @media print{
+    body{background:#fff;font-size:10pt;}
+    .paper{width:auto;min-height:0;margin:0;padding:12mm 14mm;box-shadow:none;}
+    .toolbar{display:none;}
+    h2{break-after:avoid;}
+    ol.q>li,pre.code{break-inside:avoid;}
+    .page-break{break-before:page;}
+  }
+</style>
+<style id="__dm_no_drag_style__">* { -webkit-user-drag: none !important; }</style><style id="__dm_bindable_badge_style__">[data-sp-bindable="database"]{outline:1px dashed #0088ff;outline-offset:2px;border-radius:4px;}[data-sp-bindable="database"] *{pointer-events:none !important;transition:none !important;animation:none !important;}[data-sp-bindable="database"]{transition:none !important;animation:none !important;}</style></head>
+<body data-page-node-id="id7qDCMEEko84HxsSxRCn1" style="position: relative;">
+
+<div class="toolbar" data-page-node-id="JpgppWJnCpCFEgydxOiJ60">
+  <button id="toggle" onclick="document.body.classList.toggle('show-answers');document.getElementById('toggle').textContent=document.body.classList.contains('show-answers')?'隐藏参考答案':'显示参考答案'" data-page-node-id="ehkPVuYRgYfVZbon2JDZDj">显示参考答案</button>
+  <button onclick="window.print()" data-page-node-id="v5KYV9vOHw6603zmaHhLpM">打印 / 存为 PDF</button>
+</div>
+
+<article class="paper" data-page-node-id="zTpzWfE4hQVPzTgWbv4oDR">
+  <header data-page-node-id="v0saNIpT75mcRZwzK2xIa3">
+    <p class="eyebrow" data-page-node-id="StX42JVIeLrvVcTJmDtlZZ">信盈达 · C 语言课程</p>
+    <h1 data-page-node-id="dIGs2grKevSCC9fZTo0uJp">期末全真压轴模拟卷（二）</h1>
+    <p class="sub" data-page-node-id="GaaTISALgHRZvcMS6GH6Tj">错题强化版 · 满分 100 分 · 建议用时 90 分钟 · 闭卷</p>
+  </header>
+
+  <table class="meta" data-page-node-id="nAqvPXAMbBoPv3kbv9Aivu">
+    <tbody data-page-node-id="guZHmz1jI0eMvM5BmwI5nb"><tr data-page-node-id="4MnI298nzcdLHRE8jRdWYr"><td class="k" data-page-node-id="aDFi7ULDxJHPFikVsgeF99">姓名</td><td style="width:28%" data-page-node-id="YNL17mavUuXbHD5Iw4Ds3u"></td><td class="k" data-page-node-id="7AtCdpHQWS0dn5KrDGEID7">学号</td><td style="width:28%" data-page-node-id="dUOz5xSY0Ru9FAXIxbx8Lh"></td><td class="k" data-page-node-id="FprYfx0oUpvPUlWZqbSCvl">得分</td><td data-page-node-id="oA4UiWXqJyUNo481IJG7R6"></td></tr>
+  </tbody></table>
+
+  <table class="scoreboard" data-page-node-id="DDzqM1qYEz5JXb66twC8B9">
+    <tbody data-page-node-id="Hg8lARaIfdIYEiQ81mph1I"><tr data-page-node-id="AGwdcmmgqLnQ0uMmDelDAE"><th data-page-node-id="UlLN5zUAKRbT08ChxQLOts">题号</th><th data-page-node-id="mDW2a1p8evTiYngIfgw5w5">一</th><th data-page-node-id="EJDe1FhVtZ03BHHAX0hfKF">二</th><th data-page-node-id="HKmXyYL9REQXA4O32WMfWz">三</th><th data-page-node-id="G15mr9tkwZa6SG16LWQlkw">四</th><th data-page-node-id="r8m6NnaqQ9hCTfzdg8ookY">五</th><th data-page-node-id="Q44i9wHRA57Z8KkfxzgALW">总分</th></tr>
+    <tr data-page-node-id="FgatF5loXgjCdNKCSQLgb0"><th data-page-node-id="PkHhi3CupoWVn3VwK073bl">满分</th><td data-page-node-id="tqoE4U7OIxFB92xl4pTcys">40</td><td data-page-node-id="8ZLaW0ykuxwDrjYfbECpPd">20</td><td data-page-node-id="V9wk11Sg6pt05SiboK5bQr">20</td><td data-page-node-id="1gwJvcNm4YLp4e2xTEAdCl">12</td><td data-page-node-id="fMmF3QRR8HJCCOGctp91pn">28</td><td data-page-node-id="BOOjHujBjQVwf9ZH0VB1Vh">100</td></tr>
+    <tr data-page-node-id="BwCGf4UIZAQTXD9Q9DmhTG"><th data-page-node-id="zXfGZANZ341av8AMAJ02Qo">得分</th><td data-page-node-id="ADun3VFnImsVahQBCMobYu"></td><td data-page-node-id="T4yLLiUcdhKgWQcAjuRokv"></td><td data-page-node-id="goW7RvGjZDiINir0nk1DH9"></td><td data-page-node-id="GGU3jhERjzCKGNRhFpCEGc"></td><td data-page-node-id="AJtIdmQS5NaFoxFy55K7lQ"></td><td data-page-node-id="Eop5bueRdleduKhDXYOMgS"></td></tr>
+  </tbody></table>
+
+  <p class="notice" data-page-node-id="MBloUCXVRy6QuoiezqpXGO"><b data-page-node-id="ltKEM3JRV4lXuyrkoFyoCE">命题说明：</b>本卷依据上一套答卷的错题分布生成，重点复测 <b data-page-node-id="L4DCfhUA1BuhjrnE2LQ4j0">复合赋值与宏的文本替换、结构体内存对齐、短路求值、文件指针定位、指针偏移与下标换算、static 生命周期、大小端、字符串/数组拷贝、结构体数组与模块化编程</b>。所有题目均已规避原卷中「术语写反」和「同一表达式多次自增导致未定义行为」两类不严谨表述。</p>
+
+  <h2 data-page-node-id="xWmuNMi2xZBu5vxUsf6CCy">一、单项选择题<span data-page-node-id="or80TYelGu9BOfYqACBMMB">每题 2 分，共 40 分</span></h2>
+  <ol class="q" data-page-node-id="B4ejzRxyKm1QAz32afb0Ba">
+    <li data-page-node-id="WItbgbOCGwqH11CCnJzRQr">在 64 位 Linux（LP64）环境下，<code data-page-node-id="r0aFOzC34spl6rAHBYg2Oi">sizeof(long)</code>、<code data-page-node-id="LzoNGffPhMoplww5oZ9p2k">sizeof(void *)</code>、<code data-page-node-id="oARxVCpojN5ooJPOEAkB19">sizeof(int)</code> 的结果依次是（　）。
+      <ul class="opts" data-page-node-id="IuJuPTyIGZ3oDuvOshG8wb"><li data-page-node-id="tY1WxRIHC3Ga3xH93ttp1U" style="font-weight: 400;">A. 4, 4, 4</li><li data-page-node-id="FLFfRVgAQhq1zCR4ttUKCP" style="color: rgb(255, 0, 0);">B. 8, 8, 4</li><li data-page-node-id="y0n2GiYAQC9FNwFcD2yASJ">C. 8, 4, 8</li><li data-page-node-id="ZBNmPpv0cX9x1gJf3QN7Cr">D. 4, 8, 8</li></ul></li>
+    <li data-page-node-id="TmZwZkIhBoBQx4vUcKiK0x">若有 <code data-page-node-id="e8sLXAD69J307gIB3sI73E">int a = 10;</code>，执行 <code data-page-node-id="lR6ajV0Z56EEmxWwOtaDxD">a *= 2 + 3;</code> 后，a 的值是（　）。
+      <ul class="opts" data-page-node-id="zOHUAdFbNfHmyvxDUXeVEV"><li data-page-node-id="b5XPwdDWK8xBLNewY72sDh" style="color: rgb(255, 0, 0);">A. 23</li><li data-page-node-id="G5bRy7RwqIoFF1CSBu2KCJ">B. 50</li><li data-page-node-id="1F3oVgByJAcmeZE5HgV1Ct">C. 25</li><li data-page-node-id="kWz2EUPqe5u5cmFEFJk9DC">D. 60</li></ul></li>
+    <li data-page-node-id="sJ69MMCpATTcCtWmRMEQkA">以下关于位运算的说法，正确的是（　）。
+      <ul class="opts" data-page-node-id="ILk5BcXtGeSt0ACsVm0EmL"><li data-page-node-id="FB1ttZ5tbnN8Cs30r8UYDq">A. <code data-page-node-id="mxCod0buTRLJJrnYumJwAI">a ^ 0</code> 的结果一定是 0</li><li data-page-node-id="GoZTETOVAubXjsSb7otL3k">B. 将 a 的第 3 位置 1：<code data-page-node-id="z07Xlp62QxIUo6BZ4dRsEe">a |= (1 &lt;&lt; 3)</code></li><li data-page-node-id="RJpwxosrMA86foFaNkrdCP">C. 将 a 的第 3 位清 0：<code data-page-node-id="2yILEIPo4qmgYgZYmFBl8g">a |= ~(1 &lt;&lt; 3)</code></li><li data-page-node-id="bKO3IteIIGMTAO6zBHpH6K" style="color: rgb(255, 0, 0);">D. <code data-page-node-id="oipwD5XqIEThANktcP6qeH">a &lt;&lt; 1</code> 等价于 <code data-page-node-id="AQxcsbGruVCk8wCkJOwDum">a / 2</code></li></ul></li>
+    <li data-page-node-id="A22rSa0P9ks5u0KegpkjYF">若有 <code data-page-node-id="KnMFYOsS3BXVaaPChapoDd">char s1[] = "abc"; char *s2 = "abc";</code>，以下说法正确的是（　）。
+      <ul class="opts" data-page-node-id="R1CYI9FWHwOEcKKxFcUFFU"><li data-page-node-id="5t6joCTL1Oy9og81bcvWlM">A. <code data-page-node-id="viS2swnGiOBRH3bEbDD74t">sizeof(s1)</code> 与 <code data-page-node-id="DgSGpklqE4TOYSxRjZZHFs">sizeof(s2)</code> 相等</li><li data-page-node-id="WfeDRzvqup9WrcW1zwGRCS">B. s1 与 s2 指向同一块内存</li><li data-page-node-id="Pz8cEhRmkelW4aRx8ZMmJF" style="color: rgb(255, 0, 0);">C. <code data-page-node-id="qBD43JRdcCG6TZKlArh9Aa">s1[0]='A'</code> 合法，<code data-page-node-id="56UNC8WoItScR1YMD5twju">s2[0]='A'</code> 属未定义行为</li><li data-page-node-id="cDhovyfV7ZfJCtCcRn94Eh">D. <code data-page-node-id="JxYU0rqF2DVTpmDzWlWnaM">s1 = s2;</code> 合法</li></ul></li>
+    <li data-page-node-id="pYlkUFYQKrwLUlDMcLN5mr">已知 <code data-page-node-id="mybH0uivYoEaxe5mDu9jmQ">int a[3][4];</code>，下列与 <code data-page-node-id="6l1t4Rvaqsi2koFlS0R0i0">a[2][1]</code> 等价的是（　）。
+      <ul class="opts" data-page-node-id="XjtLpJ3j7xh0QnsaxLYeF7"><li data-page-node-id="HNGuILVoLR0JcF8lYu7Vr8">A. <code data-page-node-id="F7oKeH30G9t5Aiomxb5XLF">*(a[2] + 1)</code></li><li data-page-node-id="ExVaPCw8VLH35oQmD54Dbx">B. <code data-page-node-id="9lcnHhMW8SFJN8TsYZBdMp">*(*(a + 2) + 1)</code></li><li data-page-node-id="0OHZCMjTNrlVKrnyQG89lE">C. <code data-page-node-id="GdNi5UuAUR2S4GkrN9oGgM">*(&amp;a[0][0] + 9)</code></li><li data-page-node-id="Jl8jV0qeG3iES3GEcf5UGE" style="color: rgb(255, 0, 0);">D. 以上都对</li></ul></li>
+    <li data-page-node-id="591K0IBpHQuVGf0QYHEBUg">在 64 位系统下，<code data-page-node-id="657wOYONVguj4t63OOe7yG">int *p[4]; int (*q)[4];</code> 中 <code data-page-node-id="eo1mCZjL85yCsQymyAROdv">sizeof(p)</code>、<code data-page-node-id="xBGUaU0DIjq3yUKIAzDaBT">sizeof(q)</code> 分别是（　）。
+      <ul class="opts" data-page-node-id="60I0WCGt9850jHBgXw2nRW"><li data-page-node-id="GvzFs5PNAgSFzeZ1ji7pFR">A. 8, 8</li><li data-page-node-id="VqdhdkqD9QqZkncMGaFve6">B. 32, 8</li><li data-page-node-id="G0SMSJyFLFVSiEymo898fl" style="color: rgb(255, 0, 0);">C. 8, 32</li><li data-page-node-id="Jrx8C1bXMVZ5MzGfvGQ21H">D. 32, 32</li></ul></li>
+    <li data-page-node-id="rVZZETQO2yAYLTTwoCAQmO">关于 <code data-page-node-id="sCITo5nCCYwcqvuzLNWdD1">int a[5];</code> 中的 <code data-page-node-id="E2SOqMcIegg1Jqm8weo0CB">a</code> 与 <code data-page-node-id="SKJIGzkWFgd4QuTQFaoZno">&amp;a</code>，下列说法正确的是（　）。
+      <ul class="opts" data-page-node-id="FaxFWK3QqnISC2oNSnmZs5"><li data-page-node-id="1hTAyKesQqkbdHl2qX3tPD">A. 值相同、类型也相同</li><li data-page-node-id="mvBtsQCo6daTpmXwxzKGev" style="color: rgb(255, 0, 0);">B. 值相同但类型不同：<code data-page-node-id="asJCE4LfspWpJcuvutIxK5">a</code> 退化为 <code data-page-node-id="cqpJvMSiRMhAbMu3CmCjMb">int *</code>，<code data-page-node-id="rh1NUAa5iezGCbQspfLY9J">&amp;a</code> 为 <code data-page-node-id="2FZgoIe3rhnubZNbScvsB9">int (*)[5]</code></li><li data-page-node-id="ELuKzG8aAPfV9poJVzJL8p">C. <code data-page-node-id="Uh6YqH7VswCxUULGxyJpvC">a + 1</code> 与 <code data-page-node-id="yV3PUjtIdjSVzWGtJP75PA">&amp;a + 1</code> 偏移的字节数相同</li><li data-page-node-id="y8lrRyMOePfJnVH1Ipg1yP">D. <code data-page-node-id="g2MH5bURPbttMlfkgJlzpt">&amp;a</code> 不能赋给任何指针变量</li></ul></li>
+    <li data-page-node-id="40KsK1jKG3T7g2cgGSuwQM">以 <code data-page-node-id="diiNcp0wqRAaGw12k5JCcT">"a+"</code> 打开一个已存在、内容为 <code data-page-node-id="PfrbVBm0c1cWgZjMhrxE6Z">"abc"</code> 的文件，下列说法正确的是（　）。
+      <ul class="opts" data-page-node-id="P8volGg441QasEIvWGzyum"><li data-page-node-id="edtmltaLxoxsssRr3XjQIE">A. 原内容被清空，指针在文件头</li><li data-page-node-id="GaGto5HJ6yGJWDMzafJwc8" style="color: rgb(255, 0, 0);">B. 原内容保留，可读可写，写位置初始在文件末尾</li><li data-page-node-id="pdG6QBjurhPlFLXPHBO7hZ">C. 只能写，不能读</li><li data-page-node-id="cuQVrYEbcUQQo88DQW8Uhk">D. 文件不存在时 <code data-page-node-id="MHu77Z0owqFcFAhPtuZ9qh">fopen</code> 返回 NULL</li></ul></li>
+    <li data-page-node-id="4aBCa0U09EeBXFOkK8gOxS">下列代码中最可能引发运行时错误的是（　）。
+      <pre class="code" data-page-node-id="RVjznGd6sBD9smhcNWRnOe">char *p = "hello";
+char a[] = "world";
+p[0] = 'H';   /* L1 */
+a[0] = 'W';   /* L2 */</pre>
+      <ul class="opts" data-page-node-id="uCeB5wMvQWJzWGWBjEqZqp"><li data-page-node-id="Ed2UJ2z8RF7iffYHe3ItBN" style="color: rgb(255, 0, 0);">A. L1</li><li data-page-node-id="Uw5MzTgX7CFYLCtS8i6liN">B. L2</li><li data-page-node-id="Xa0ax8Vzm3nfrNn2EDtdPZ">C. L1 和 L2 都错</li><li data-page-node-id="SG00K0bfLO2GPPsRoPoE07">D. 都不错</li></ul></li>
+    <li data-page-node-id="KD8LHKiAaKnK047u5yXpiG">已有 <code data-page-node-id="W48FJOyf7lSqSydjQVEP8R">#define SQ(x) x * x</code> 与 <code data-page-node-id="qSDtDOnvMa19yl3fg6X2uF">#define SQ2(x) ((x)*(x))</code>，则 <code data-page-node-id="lMahkCTwT1Jk45noYrwaD7">int a = SQ(2+3), b = SQ2(2+3);</code> 中 a、b 的值分别是（　）。
+      <ul class="opts" data-page-node-id="kAoh0uof76PEGNpN11Gbbz"><li data-page-node-id="OzRlGQHo8ygqPoxx6WAfef">A. 25, 25</li><li data-page-node-id="zKml0iOxOC4QG8GRrf9uHs" style="color: rgb(255, 0, 0);">B. 11, 25</li><li data-page-node-id="IkJY4iic9XQVlfWpOJqWax">C. 25, 11</li><li data-page-node-id="o6ODgOAtNIVfY1xZ8LYsJH">D. 11, 11</li></ul></li>
+    <li data-page-node-id="jtafcclJUPB8OwNDfJ7IAK"><code data-page-node-id="HD4Q9OwCOFrWhpt1NwsbKD">struct T { char a; int b; short c; };</code> 在 64 位系统默认对齐下，<code data-page-node-id="7aUuTTNK9A94FGtFoHhCYl">sizeof(struct T)</code> 为（　）。
+      <ul class="opts" data-page-node-id="Po8z3uzm4Fl2PXxfZk54NO"><li data-page-node-id="X35s8QvyFuoan3rvHLbFvV">A. 7</li><li data-page-node-id="25EuGDhrYAp00Yu5AXOO58">B. 8</li><li data-page-node-id="mxgbfjG18O2XKUTqxYB8hR" style="color: rgb(255, 0, 0);">C. 12</li><li data-page-node-id="TcqYpJFVYOwZNpXFkAUeLm">D. 16</li></ul></li>
+    <li data-page-node-id="TwF0P0ouyhLllj1we49NWH">关于函数调用时的实参，下列说法正确的是（　）。
+      <ul class="opts" data-page-node-id="822cxHTIgwz0OADS6ioHfZ"><li data-page-node-id="IQ0yUw8rix6nOzixjfswkA">A. 只能是变量</li><li data-page-node-id="LPtRXYe4PzCpg1DZxpK465" style="color: rgb(255, 0, 0);">B. 可以是常量、变量或表达式，但类型要匹配</li><li data-page-node-id="4xVE5JEBDbzBJbANclAKJM">C. 数组名作实参时传递整个数组的副本</li><li data-page-node-id="wsPGW5llDa30XIMbIGPD1L">D. 实参个数必须与形参个数不同</li></ul></li>
+    <li data-page-node-id="CwZAFiZ97pKime7ZK9EjIx"><code data-page-node-id="QuST3DrcPGf8N5yBNGokye">if (strcmp(s1, s2) == 0)</code> 表示（　）。
+      <ul class="opts" data-page-node-id="jaTvetjxZXILlfgujFADba"><li data-page-node-id="IbmndRXizwOocv7JjGHIbs">A. s1 与 s2 的地址相同</li><li data-page-node-id="IF4GcTdgs2EJCnGG4bDlnX" style="color: rgb(255, 0, 0);">B. s1 与 s2 的内容相同</li><li data-page-node-id="iPnTadn2JJAjC41KTykOrq">C. s1 的长度大于 s2</li><li data-page-node-id="fNEyruGgemGJcDaCY39wdI">D. 该语句编译错误</li></ul></li>
+    <li data-page-node-id="Z4n0ydrq7Xnnd20DFlnsJv"><code data-page-node-id="hjIScQwfJ7Ra2rb0tT9GXj">int x = 0, y = 0;</code> 执行 <code data-page-node-id="RTiodcAfLJC2lQAlRFrSjY">if (x++ &amp;&amp; ++y);</code> 后，x、y 的值分别是（　）。
+      <ul class="opts" data-page-node-id="WR1iLGnNBQOkAeQAnWH2ns"><li data-page-node-id="i27QVZFA5GitLKzVLvlln0" style="color: rgb(255, 0, 0);">A. 1, 0</li><li data-page-node-id="OxpIfhcaemkcR66hTisdKs">B. 1, 1</li><li data-page-node-id="yLWXxW4hy4p3B6TbOaVdHs">C. 0, 0</li><li data-page-node-id="MaFq82FnVftQpxa2YwHBs6">D. 未定义</li></ul></li>
+    <li data-page-node-id="v41Nlg378mGziLImK5xTNj"><code data-page-node-id="FEMvaxMBsOHcq2vWEbff7j">int arr[5] = {1, 2, 3};</code> 中 <code data-page-node-id="A94qpKhWYBf9jD3b4m5Y4x">arr[4]</code> 的值是（　）。
+      <ul class="opts" data-page-node-id="AKi2MW0Rn6ohpbtSFQTDXG"><li data-page-node-id="ovC4aNENtG55nM1cE1uGju" style="color: rgb(255, 0, 0);">A. 0</li><li data-page-node-id="CshHEO0rzIQ7IbrGO2FsQF">B. 3</li><li data-page-node-id="8Qqft8vby22NP2Nv7uS9SQ">C. 随机值</li><li data-page-node-id="HLm94A0zLkzjL5bn6T8O3o">D. 编译错误</li></ul></li>
+    <li data-page-node-id="Cy3XNhgrRzpNAbjc9p3Epc">已知 <code data-page-node-id="8S3gU6oHtCL6LYkZvKOHc8">const int *p;</code> 与 <code data-page-node-id="xbYFuZwtxBRH57uSoyWTlP">int * const q = &amp;a;</code>，下列说法正确的是（　）。
+      <ul class="opts" data-page-node-id="QsME3n0LQEUCEbMZzYVmM0"><li data-page-node-id="ZhuG1955wve79Av8gVXO18" style="color: rgb(255, 0, 0);">A. p 指向的内容不可改，q 的指向不可改</li><li data-page-node-id="FDwSgi5KvHfNW1B1VJE6Js">B. p 的指向不可改，q 的内容不可改</li><li data-page-node-id="vApEXAmtjF28b4DPFo6r20">C. 两者的指向和内容都不可改</li><li data-page-node-id="8tOjfkNk2jjiVdkpABQGZJ">D. 两者都可改</li></ul></li>
+    <li data-page-node-id="AJHwG4jRWhfB3FiZJp1B0z">以下可以作为 <code data-page-node-id="5oSRDn60XXxrqgR6ZBMuvz">switch</code> 表达式的是（　）。
+      <ul class="opts" data-page-node-id="fvJPywgRKCsGtPQts0bN8r"><li data-page-node-id="R1cvhei3bOI6mGXVS2tFkX">A. float</li><li data-page-node-id="tOFTW2CJ5v05os9FsfnglC">B. double</li><li data-page-node-id="vBckfNJppaXE7ypyi9WTPf" style="color: rgb(255, 0, 0);">C. 枚举类型</li><li data-page-node-id="BnEShrPkFrMlaDk6o94kXC">D. 字符串</li></ul></li>
+    <li data-page-node-id="LN8VRpnkfu1Bs1bad79lCh">设 <code data-page-node-id="NGvjKpWVMxSTmVVMxEGAab">int a = 5, *p = &amp;a, **q = &amp;p;</code>，下列表达式值为假的是（　）。
+      <ul class="opts" data-page-node-id="cq3d8zLnVFjmDAxawQ4KC3"><li data-page-node-id="F1GHROXRCs8AkP0f0927Nl">A. <code data-page-node-id="jMV3pFKlkgcjjIlUxHX02o">*p == 5</code></li><li data-page-node-id="hGPSTOANvkoEMQPeXUpnsI">B. <code data-page-node-id="p2P6veCiN6YCCAHKBG18nj">**q == 5</code></li><li data-page-node-id="4Rh5sS57mgVdPO4DR3e3GW">C. <code data-page-node-id="2tbG5FkVKALHrNespChrU7">q == &amp;p</code></li><li data-page-node-id="kMZWE0Vv9n8Sbs3WBTdQou" style="color: rgb(255, 0, 0);">D. <code data-page-node-id="L112hga0BLFezDCgLpVPCj">q == &amp;a</code></li></ul></li>
+    <li data-page-node-id="SZOZaBl7ugJwU1LW1F3ie4"><code data-page-node-id="z4SmRIg38EUlbTArYCD1Hu">struct S { int a; char b; } s = {100, 'x'};</code> 中 <code data-page-node-id="qBUaOqtQH3gv2nM7GMuqRY">sizeof(s)</code> 为（　）。
+      <ul class="opts" data-page-node-id="Arf6gTpVsOTSbcGrRx2m4U"><li data-page-node-id="TTigUUeg5dY2UYgTJFxv8M">A. 5</li><li data-page-node-id="YUPUif2qxZEKLfLrsuV4Ed" style="color: rgb(255, 0, 0);">B. 8</li><li data-page-node-id="BpfBV5WbrNa94KCOW5XxP4">C. 100</li><li data-page-node-id="85RQWNQHal9ybEb7rtuTyJ">D. 4</li></ul></li>
+    <li data-page-node-id="ON1lDvm62Cs7Dp9g3NtL8F">在单向链表中删除 p 之后的结点（已知 <code data-page-node-id="erCRf1c8yqiWhSMNRs7Rh6">p-&gt;next</code> 非空），正确的操作是（　）。
+      <ul class="opts" data-page-node-id="lAPjeH8OVCtmup7lrqyilk"><li data-page-node-id="z6eGrmQtf5mgzkF9cbsgmV">A. <code data-page-node-id="tQX8g9xuTgC87HlALw1eDy" style="color: rgb(255, 0, 0);">p-&gt;next = p-&gt;next-&gt;next;</code></li><li data-page-node-id="PvWRmYes4OR2eAvAJICfk1">B. <code data-page-node-id="1gNnpP4cu9kTDMfDyhXCg9">p-&gt;next = p;</code></li><li data-page-node-id="9crFj2zVavUgmeqpIZM6CL">C. <code data-page-node-id="d56v8w49kTkFeGOs1IKWfG">free(p-&gt;next); p-&gt;next = p-&gt;next-&gt;next;</code></li><li data-page-node-id="mVPPncFXwz2XEjo5gpZEQs">D. <code data-page-node-id="dggW0Sjh4cDXMbz3HbjhC2">p = p-&gt;next-&gt;next;</code></li></ul></li>
+  </ol>
+
+  <h2 data-page-node-id="GhmpnC44M8vcHs5iBAx12p">二、填空题<span data-page-node-id="1kiqopIYxFpvRYw8kE3OqK">每空 2 分，共 20 分</span></h2>
+  <ol class="q fill" data-page-node-id="6iy5jMVOfg6NfUSBzs7wBw">
+    <li data-page-node-id="O9jEpz7ZNxWdrbrYoEslyn">若有 <code data-page-node-id="WvpvUvDbaFDj7iRWAsOs0I">int a[3][4];</code>，则 <code data-page-node-id="UneSB3X5uhbpAF5zKVOMJK">*(*(a + 2) + 3)</code> 等价于数组元素 <span class="blank" data-page-node-id="ohnMVcmd2izBBDqlRLBLC3"></span>。</li>
+    <li data-page-node-id="lnKvSL90F9SuRXOmMNoXut">若有 <code data-page-node-id="Fdy4k9N4Uxx5reLNzT3IuS">char str[] = "Hello";</code>，则 <code data-page-node-id="7b3D7wY2iOjmitPJXohUDM">sizeof(str)</code> 的值为 <span class="blank" data-page-node-id="pIsdV05BaR2WIEJGprpNWd"></span>。</li>
+    <li data-page-node-id="8lXgOHAFKh3tEKHIhP6hGH">文件打开函数 <code data-page-node-id="hym24UiHFfwpH7SZL6LK6K">fopen</code> 的返回类型是 <span class="blank" data-page-node-id="JtjPbgNWGbkEpmO9BousDQ"></span>。</li>
+    <li data-page-node-id="0FGm9c6ORmL2sZ8ng7u1Cn">若要把文件指针 fp 移回文件开头，除 <code data-page-node-id="rJFCQNr9fEleoE75dGu2tk">fseek(fp, 0, SEEK_SET)</code> 外还可以调用 <span class="blank" data-page-node-id="sumdDxaD1rFbGMFKE6EDpA"></span>。</li>
+    <li data-page-node-id="1wsbvRFMwW7uFsvYlIaKqz">若希望在函数内部修改主调函数中<b data-page-node-id="2QpweobUH1DpYEOqP7dFSQ">指针变量的指向</b>，必须传递 <span class="blank" data-page-node-id="HzqP95G9ZcveJCqYuqHXZS"></span>。</li>
+    <li data-page-node-id="GgTY2LRNw58sp4hk5D13uB"><code data-page-node-id="GE5NkV0yZwnmiZ1pvCGRpf">struct A { char a; int b; };</code> 在 64 位系统下大小为 <span class="blank" data-page-node-id="leCu2RgHjuuv1lKUif8efx"></span> 字节。</li>
+    <li data-page-node-id="quK0J1DQ4K2IiehVcz8Rdg">逻辑运算符 <code data-page-node-id="LNRU6KBKC0DnD5zTqiBKPB">&amp;&amp;</code>、<code data-page-node-id="H7MQSLJoEZkgybFGVFny2m">||</code> 具有 <span class="blank" data-page-node-id="CulaaymptexDDJiOALro7t"></span> 特性：一旦左侧已能决定结果，右侧就不再求值。</li>
+    <li data-page-node-id="bMtxDi6G79ObVfDhk6z3YL">把变量 a 的第 n 位清 0（其余位不变），应写作 <code data-page-node-id="GUV0g1ED5mMfuKiaUggAaQ">a <span class="blank" data-page-node-id="FKs1bwN4Edw4wDdregghCY"></span> ~(1 &lt;&lt; n);</code>。</li>
+    <li data-page-node-id="g07Tkx0SCIHaWyD5C3FP24"><code data-page-node-id="aNFafMVz2srGwQ8dI1sHAc">#include</code> 中，包含系统库头文件一般使用 <span class="blank" data-page-node-id="0OhADtFwOp2Ke6oGFPJt4B"></span> 符号，包含自定义头文件使用双引号。</li>
+    <li data-page-node-id="qSovSVVRJHUyTEdDesFFqG">若有 <code data-page-node-id="7SjBuhSh9NyE3RL2zhsPYJ">int arr[5];</code>，数组名 arr 在值上等价于 <span class="blank" data-page-node-id="57Kblvk0HwyOQ9yJyu2G80"></span>。</li>
+  </ol>
+
+  <h2 data-page-node-id="UiDVBZ7bU1C8QwY3C2NpOd">三、看代码写结果<span data-page-node-id="5ZttTrdjcuaO3egr6l3qrP">每题 5 分，共 20 分</span></h2>
+  <ol class="q" data-page-node-id="adW5qNo53dwC7cjbebvqXy">
+    <li data-page-node-id="HKFzGWI8uYhXUvnlHaKGcw">指针与下标换算
+      <pre class="code" data-page-node-id="7P7oH8ubusm1C9MTL9c8ta">int a[5] = {10, 20, 30, 40, 50};
+int *p = &amp;a[2];
+printf("%d, %d\n", *(p - 1), p[2]);</pre>
+      输出结果：<span class="blank" data-page-node-id="AqQi4OxBeAhLSNdbJBtOGD"></span></li>
+    <li data-page-node-id="hqT9RKvNYegE0TGGQpvViw">静态变量与函数调用
+      <pre class="code" data-page-node-id="41CkCh5gdqDtId3A7vFF3B">int f(int x) {
+    static int s = 2;
+    s = s + x;
+    return s;
+}
+int main(void) {
+    int i, sum = 0;
+    for (i = 1; i &lt;= 4; i++) sum += f(i);
+    printf("%d\n", sum);
+    return 0;
+}</pre>
+      输出结果：<span class="blank" data-page-node-id="eLctoSV9gRS2JLDAwjOv8h"></span></li>
+    <li data-page-node-id="rdr2uje70FE62A45uAElKA">宏的文本替换（无副作用参数）
+      <pre class="code" data-page-node-id="84hRdPmmbuQ9baExNSxBIO">#define SQ(x)   x * x
+#define CUBE(x) ((x) * (x) * (x))
+int main(void) {
+    int n = 2;
+    printf("%d, %d\n", SQ(n + 1), CUBE(n + 1));
+    return 0;
+}</pre>
+      输出结果：<span class="blank" data-page-node-id="TFlkH1hGzDoSymtYWMn2zU"></span></li>
+    <li data-page-node-id="f6rIbL4EGrjKbBZn7Sexqk">联合体与大小端（假设为小端模式）
+      <pre class="code" data-page-node-id="MBTCh1N3kal4PjDMwo1af9">union U {
+    int a;
+    unsigned char b[4];
+} u;
+u.a = 0x12345678;
+printf("%x, %x\n", u.b[0], u.b[3]);</pre>
+      输出结果：<span class="blank" data-page-node-id="ak9LOS0lVTkX9g9YRxlsHg"></span></li>
+  </ol>
+
+  <h2 data-page-node-id="BNcSCuDlWWFOL2yanLtUU1">四、代码找错题<span data-page-node-id="9m0JR5PA5zxO8CsKdzOypC">每题 6 分，共 12 分；指出全部错误并写出改正后的代码</span></h2>
+  <ol class="q" data-page-node-id="Xj8ezXtJCEgZj7sk3xwD97">
+    <li data-page-node-id="oFWyhTCQsDZGQOk53iS2eQ">下列代码试图实现字符串拷贝。
+      <pre class="code" data-page-node-id="4rJn4eMJyhJ0z35LZm4tbX">void my_strcpy(char *dest, char *src) {
+    dest = src;
+}
+
+int main(void) {
+    char str1[10];
+    char *str2 = "hello";
+    my_strcpy(str1, str2);
+    printf("%s\n", str1);
+    return 0;
+}</pre>
+      错误与改正：<span class="blank" data-page-node-id="Ha57yxcnHe7lE90wxHK9jx"></span></li>
+    <li data-page-node-id="YXjCGkw6gXQBCODrlv4rS5">下列代码试图录入一名学生的信息并输出。
+      <pre class="code" data-page-node-id="EPnGny1A9DLQROrksezSHo">struct Stu {
+    char name[10];
+    int id;
+    float score[3];
+};
+
+int main(void) {
+    struct Stu s[3];
+    strcpy(s[0].name, "张三");
+    s[0].id = 1;
+    s[0].score = {90, 85, 88};
+    printf("%s %d %.1f\n", s[0].name, s[0].id, s[0].score[0]);
+    return 0;
+}</pre>
+      错误与改正：<span class="blank" data-page-node-id="HHKFxHFYmyTwXhMCpthV0J"></span></li>
+  </ol>
+
+  <h2 data-page-node-id="NNBZNvwzIet4h1jZF6eewM">五、编程题<span data-page-node-id="df0H1UEiGIfWGxCSEyxoEa">共 28 分；要求用函数封装，可写在同一份文件中</span></h2>
+  <p style="margin:0 0 10px" data-page-node-id="gDzqP5BFw9Zp2waT6IygKq">题目：简单的学生成绩管理系统（模块化设计）。</p>
+  <ol class="q" data-page-node-id="WB2gCIAN1UD3rzD9idzKP1">
+    <li data-page-node-id="ID5qMAHfu1B6DlslzQNxf2">（4 分）定义结构体 <code data-page-node-id="xkGz8fGK8ixAzMtacXhGek">struct Student</code>，成员为：姓名 <code data-page-node-id="uGsMkuUKSfZKsU4JPtvrgU">char name[20]</code>、学号 <code data-page-node-id="thAcxHhw1hOK0aIp5VoihP">int id</code>、三门课成绩 <code data-page-node-id="NzRHfkyBAF6HZ4m4YlFCGG">float scores[3]</code>。</li>
+    <li data-page-node-id="XQZ9byzEF4YuaNP3iZAoyl">（8 分）编写 <code data-page-node-id="KMhIu2Uvx7s38ExuvJVlRR">void inputStudent(struct Student *p, int n)</code>，从键盘输入 n 个学生的姓名、学号和 <b data-page-node-id="y1Qhi1FSMnwkGFqr5HQ9h5">3 门课</b>成绩。</li>
+    <li data-page-node-id="k2OJ0phIue8s9daUqDDpsc">（10 分）编写 <code data-page-node-id="IsX87omRe28E8K8YCIlBgM">void printMaxScore(struct Student stuArr[], int n)</code>，计算每个学生的<b data-page-node-id="aj7A6essojdCc8sJllKhex">总分</b>，找出总分最高者并打印其姓名、学号、总分（保留 1 位小数）。要求不得修改原始数组，不得越界访问。</li>
+    <li data-page-node-id="Is8VO1NBCc08IWjFizyafF">（6 分）编写 <code data-page-node-id="CCtrvt5KblFwqzuYfZZLbV">main</code>：定义能存放 2 名学生的数组，调用上述函数完成输入与输出。</li>
+  </ol>
+
+  <footer data-page-node-id="kQ1uWhBjT00HE40pqa6SSr">信盈达 C 语言期末 · 错题强化模拟卷（二） · 答题完毕请检查是否填写姓名与学号</footer>
+
+  <!-- ===================== 参考答案与解析 ===================== -->
+  <section class="answers page-break" id="answers" data-page-node-id="vvWQs7FwM0fxtYi5priFgn">
+    <h2 data-page-node-id="HfA6CHpC0ypsaDOeIfjvft">参考答案与解析<span data-page-node-id="DRkIpjwAvtGX8eDDWH4C0H">默认隐藏，打印前请先折叠</span></h2>
+
+    <p class="explain" data-page-node-id="qZ0JlZKUcTrxWFAhxZ2bi8"><b data-page-node-id="WHVGOgrmXRrub9DPFzVF5M">一、单项选择题（每题 2 分）</b></p>
+    <div class="ans-grid" data-page-node-id="Z8HhSjGgju8etKO1GwDoAb">
+      <p data-page-node-id="gPBlnqlgZK4OnGqLffTKxM"><b data-page-node-id="kzSXMb0rEFxzBjiu1SGZju">1. B</b>　LP64：long 8、指针 8、int 4。</p>
+      <p data-page-node-id="p4TkBNB0gx8yuQ13uJtxOQ"><b data-page-node-id="9HPWIfraPt6EjWfMPDrpSR">2. B</b>　<code data-page-node-id="IAoelDY9CLANjrfMUFf5fS">a *= 2 + 3</code> 等价于 <code data-page-node-id="3oCG5QHsiDnrEHcIcJv8Yd">a = a * (2+3)</code> = 50。</p>
+      <p data-page-node-id="zRpKPYSpYXpx0r4Nq2nVNB"><b data-page-node-id="vEIq4hKzKr9qc6XztFrCEL">3. B</b>　置 1 用 <code data-page-node-id="yn2zeaZXx7JY2dl1xgP09V">|=</code>；清 0 应 <code data-page-node-id="RD7rDc3noEzS93Wl5htJku">&amp;= ~(1&lt;&lt;3)</code>；<code data-page-node-id="QXWBu4e9YmmtW9lUG0JFJH">a^0 = a</code>；<code data-page-node-id="59Iego3jAgwYHnW4F2W1rk">&lt;&lt;1</code> 是乘 2。</p>
+      <p data-page-node-id="DLvQt0Eo8NdcZonLT4Mn6c"><b data-page-node-id="0O1MLxaxjRQAbEyG2J7lwo">4. C</b>　s1 是可写数组，s2 指向字符串常量，修改属未定义行为。</p>
+      <p data-page-node-id="5tqMYilP8zSxdO6hjduJwT"><b data-page-node-id="tKw1UfUk6C6w39vGJBamAV">5. D</b>　a[2][1] 相对首元素偏移 2*4+1 = 9，A/B/C 三者等价。</p>
+      <p data-page-node-id="1Ji1B2AvEI6aKNfRNipTed"><b data-page-node-id="dG0bYYM8egwe2UhW3K5UzQ">6. B</b>　p 是「指针数组」（4 个指针 = 32 字节），q 是「数组指针」（1 个指针 = 8 字节）。</p>
+      <p data-page-node-id="U5T1QHXVStFIoLGio6QjSJ"><b data-page-node-id="I8LjeAwIFkNqs6XWqJnKqi">7. B</b>　值相同（同一地址），但 <code data-page-node-id="R7HFkv79atFvzJdzWPYsuf">&amp;a</code> 的类型是 <code data-page-node-id="BgGj4ulxWYjBSy380ISjw2">int (*)[5]</code>，<code data-page-node-id="jCJEq6JPiAf8mFmGCASVVv">&amp;a+1</code> 偏移 20 字节。</p>
+      <p data-page-node-id="PiAURKHUO6jiqGpouufZ8F"><b data-page-node-id="vI2HUmGxkHgLqF6HgF2DS4">8. B</b>　"a+" 保留原内容、可读可写、写从末尾开始；"w+" 才清空。</p>
+      <p data-page-node-id="vQQHK4FUizJnk77ZI0ixOb"><b data-page-node-id="5GR2KFXjHVMGjnxKa4Xhre">9. A</b>　L1 改写字符串常量；L2 修改栈上数组，合法。</p>
+      <p data-page-node-id="kyuEG6X0EvhM4CsUanP0fB"><b data-page-node-id="aUf7uGVAQhgPBw11xaoXCm">10. B</b>　SQ(2+3) → 2+3*2+3 = 11；SQ2 有完整括号 → 25。</p>
+      <p data-page-node-id="zkL9411cpzrwTexYPZ1U0I"><b data-page-node-id="I3cvYG4fMyN7fgVHTrXPpz">11. C</b>　char@0 + 填充3 + int@4~7 + short@8~9 + 尾部补齐 → 12。</p>
+      <p data-page-node-id="sNRsbvtQDsqSIvAFrPLVTO"><b data-page-node-id="6BcmjRIVUhct05O3oCEwh6">12. B</b>　实参可以是常量、变量或表达式；数组名传参退化为指针。</p>
+      <p data-page-node-id="cOr6v6V7kLt30L9SGzm8Fg"><b data-page-node-id="4DH4xQlOoeaUHkL2w6E7te">13. B</b>　strcmp 返回 0 表示内容相等。</p>
+      <p data-page-node-id="6NnKaWHXKjT2yhEUWcDjHL"><b data-page-node-id="UfDCf4k8IVbFnpD8yQKD00">14. A</b>　x++ 取旧值 0（假），短路使 ++y 不执行，x 自增为 1。</p>
+      <p data-page-node-id="kS17uVYyc3ahc0xZlYWkeK"><b data-page-node-id="7kXtEHHTdYckim6gqjjgXY">15. A</b>　部分初始化时其余元素自动补 0。</p>
+      <p data-page-node-id="BX7kjfLMHkGvaT3jV1gfBB"><b data-page-node-id="vnouc8IWo6CH1gX084aWdf">16. A</b>　const 在 <code data-page-node-id="TXH3t1pXjZ7DxIS4h4Z9k9">*</code> 左边修饰内容，在 <code data-page-node-id="YcdpnqcVP8vSJv0AIEmRkv">*</code> 右边修饰指针本身。</p>
+      <p data-page-node-id="SfP0CgSrgXWElEqwFQBdX7"><b data-page-node-id="THVJW0ReCMpkBJ8XexlCsH">17. C</b>　switch 只接受整型（含 char、枚举）；float/double/字符串都不行。</p>
+      <p data-page-node-id="1syiuCThW9JISykuZ0iFl6"><b data-page-node-id="S4cgx4rNfVZL1UsaaLoPxi">18. D</b>　q 是 <code data-page-node-id="ZAKzmMGJniDQ6Znyp35zVf">int **</code>，&amp;a 是 <code data-page-node-id="wowYchT0ejfvxFFRkSF0jS">int *</code>，值与类型都不等。</p>
+      <p data-page-node-id="FwxSEk6UkeJgmI7EJZHkax"><b data-page-node-id="LgzLEWbXdiY6uroyYUp9wH">19. B</b>　int 4 + char 1 + 尾部补齐 3 = 8。</p>
+      <p data-page-node-id="6bk08q6YsXV1JrS5xoEiaI"><b data-page-node-id="Fv3Oppq3MWZcq7nQ1jJF4O">20. A</b>　C 释放后仍访问已释放结点；若要释放内存，须先用临时指针保存 <code data-page-node-id="bAKolu38luVYLwQ62bJPCU">p-&gt;next</code>。</p>
+    </div>
+
+    <p class="explain" style="margin-top:14px" data-page-node-id="3sdp091S82AadlJxchIF2M"><b data-page-node-id="eQzqzqVSbYdPhC73AZtj12">二、填空题（每空 2 分）</b></p>
+    <div class="ans-grid" data-page-node-id="p2TvbjDCCj2ZKogpdvS6uA">
+      <p data-page-node-id="MDG1nDNbsazw0qnxfSLnxi"><b data-page-node-id="pVhPLPgcOANI8IGDuSUmOs">1.</b> <code data-page-node-id="SbK4w0dZySpKSEQs84Il13">a[2][3]</code></p>
+      <p data-page-node-id="ZCz9ga4U3hNh3ffeyNoa32"><b data-page-node-id="5LcwDf6Z4TXwnpXkInpktR">2.</b> 6（含结尾 '\0'）</p>
+      <p data-page-node-id="AWCGSczX6LePwLIvnbr29O"><b data-page-node-id="NrCz9tj3yHs3v9PUs1e4OL">3.</b> <code data-page-node-id="eMIm0Qf1hzWCoXVJmF3AG9">FILE *</code></p>
+      <p data-page-node-id="IfVS1dW7RpYQUO4qAVkCC2"><b data-page-node-id="U5d2E4635FTBaXP1wCu8Bl">4.</b> <code data-page-node-id="xG3G9RlpEFKNGwEue8zWMU">rewind(fp)</code></p>
+      <p data-page-node-id="fkG7CKCqg91SfZNyyEtnnj"><b data-page-node-id="89U5ODAGYO1CXhP1rSn6vT">5.</b> 二级指针（指针的指针，<code data-page-node-id="tdUqbDNFZ2W9cjxdCx6X6A">**</code>）</p>
+      <p data-page-node-id="ZzrhX3GFGrfClCP7JKkbZZ"><b data-page-node-id="jX1CQ8Fl54wfEhwmT50Fhq">6.</b> 8</p>
+      <p data-page-node-id="U4h7WZCfGhTDU1X3DibgD3"><b data-page-node-id="oP5g1g36yNoCbF2Pq3xn4T">7.</b> 短路（短路求值）</p>
+      <p data-page-node-id="WAVUiIakd0ofKXaCJOi5pT"><b data-page-node-id="BVEHp1AU6KyzW6ybiVZcSR">8.</b> <code data-page-node-id="0qoYEGfVdMOBwCZDu3RmQE">&amp;=</code></p>
+      <p data-page-node-id="szYvAvkOfzYmxpAY5aGTWb"><b data-page-node-id="EKsHEiL1d4F64GbjJVQmBK">9.</b> 尖括号 <code data-page-node-id="rtSOOz73dfzywCw7o4GSnJ">&lt; &gt;</code></p>
+      <p data-page-node-id="GGBegw109UKk4MNFNvmHbx"><b data-page-node-id="VmtZDnreyIA8VOBfwFzOLD">10.</b> <code data-page-node-id="5HvTjCIE3fyAc13kNnl0Cl">&amp;arr[0]</code></p>
+    </div>
+
+    <p class="explain" style="margin-top:14px" data-page-node-id="6fNbsBFHLuketBfDferuCY"><b data-page-node-id="DwygeAC3hHDaOwG3B5JDb5">三、看代码写结果</b></p>
+    <div class="explain" data-page-node-id="fTphuJILxqgTyPIl0arf8B">
+      <p data-page-node-id="o7EsfaZ5t4QBN1wkEeiKYi"><b data-page-node-id="hesoeqXulNV5W5595L2jAK">1. <code data-page-node-id="0gMxCRD8813PBX0AddIk6W">20, 50</code></b>　p 指向 a[2]：<code data-page-node-id="TSExv8tgRQ3dnSgjoktQCM">*(p-1)</code> = a[1] = 20；<code data-page-node-id="zszZQAxgP9DuNuM8WMu21D">p[2]</code> = <code data-page-node-id="Eyqp4QFXftZUeL5J3h4BJo">*(p+2)</code> = a[4] = 50。下标是相对 p 的偏移，不是相对数组首元素。</p>
+      <p data-page-node-id="Zf39oO2dLbhJS1CltUOwbg"><b data-page-node-id="PhHy9oB9MVCL6DJVDgWh7W">2. <code data-page-node-id="rdSongcKrVHPFTG8ekLG2d">28</code></b>　s 只在第一次调用时初始化为 2，之后保留：3、5、8、12，累加 3+5+8+12 = 28。</p>
+      <p data-page-node-id="PRtjjWPCipoFDcG792oNpi"><b data-page-node-id="5FiPTYeE6tqW3QEixUcra3">3. <code data-page-node-id="PgWBABJFJ01PLl7mOiBeaj">5, 27</code></b>　宏只做文本替换：SQ(n+1) → <code data-page-node-id="ZE5IASNzagsFSFj6Tyzb7T">n + 1 * n + 1</code> = 2+2+1 = 5；CUBE 参数与整体都加了括号 → 3*3*3 = 27。所以宏参数、整体都要加括号，且不要传带 <code data-page-node-id="K6ZsTrL0NhFS3jWf18RWpv">++</code> 的实参。</p>
+      <p data-page-node-id="P99WsIrJeGUu7hORNEUs58"><b data-page-node-id="pWH6lvsBiA55lLD3GGHgXq">4. <code data-page-node-id="iJXiiLmSWJJidmo8xMFVfC">78, 12</code></b>　小端把最低有效字节放在低地址：内存依次为 78 56 34 12，故 b[0]=0x78、b[3]=0x12。</p>
+    </div>
+
+    <p class="explain" style="margin-top:14px" data-page-node-id="wKvXfKHMfJkAzZHWTH9uOl"><b data-page-node-id="Gr0vEXJMM00S1aHEPe1DmN">四、代码找错题</b></p>
+    <div class="explain" data-page-node-id="YWbwrTHCQ9YAvkYMDibqIT">
+      <p data-page-node-id="dGhtIA7GT2D4gCftLSCS7v"><b data-page-node-id="laICWlAWRfHSvoFCrxPwfA">第 1 题（6 分）</b>　三处问题：① <code data-page-node-id="wGZ99EIfnhQIRCx0An3bKV">dest</code> 是形参副本，<code data-page-node-id="fHZL7pdfBWBTArj3MAYabm">dest = src</code> 只改了局部变量，<b data-page-node-id="LDGXCHnU42JbFSy2Q9NtR7">一个字符都没拷贝</b>，主调函数完全不受影响（这是根本错误，不是「少写了 '\0'」）；② 函数体内没有任何逐字符复制，也没有复制结尾 '\0'；③ <code data-page-node-id="TItsBBb2RcFGHIjdOoWokr">str1</code> 未初始化就用 <code data-page-node-id="20cVdWv3P4eK8jfFmQ6CW7">%s</code> 输出，行为未定义。另可指出 <code data-page-node-id="c2Eizo8NA68H9q1fHW1pfk">src</code> 应加 <code data-page-node-id="c4ZDWZPOqFfm8NdDVepYLC">const</code>、dest 空间需足够。<br data-page-node-id="dPaZgNTItAGTnqzP35ZiaN">改正：
+      </p><pre class="code" data-page-node-id="gbHuvQMauQsrAx4YXymb7h">void my_strcpy(char *dest, const char *src) {
+    while ((*dest++ = *src++) != '\0')
+        ;                 /* 赋值表达式已把 '\0' 一起复制 */
+}</pre><p data-page-node-id="AuLUfLRPt2oQX04Df8lkbn"></p>
+      <p data-page-node-id="8QqQO5NOus72AnNXfimndF"><b data-page-node-id="SBhvufjrYDdd7dvDCBkL11">第 2 题（6 分）</b>　两处问题：① <code data-page-node-id="vBJDISVxN2nou19V4D9kk3">s[0].score = {90, 85, 88};</code> 不合法——数组名不可被整体赋值，初始化列表只能在定义变量时使用；应逐元素赋值或用循环 / <code data-page-node-id="LnTNcp11YJig6d6qFfBVd4">memcpy</code>。② 用了 <code data-page-node-id="ZYRqAkxrpYEBJ6WLm79278">strcpy</code> 和 <code data-page-node-id="2jipYSCvzgqslpB40Fl1aX">printf</code> 却缺少 <code data-page-node-id="wbNc8ItC8nGHxOJgMD9nUe">#include &lt;string.h&gt;</code> 与 <code data-page-node-id="zSRB3eiulIrCzawaKoXJFS">#include &lt;stdio.h&gt;</code>。<br data-page-node-id="pZKAZkHqlPdlGjJoIs0eU4">改正：
+      </p><pre class="code" data-page-node-id="vFBDKZByBQA8mOrMisU06d">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+/* struct Stu 定义不变 */
+int main(void) {
+    struct Stu s[3] = {0};            /* 顺手初始化，避免垃圾值 */
+    strcpy(s[0].name, "张三");
+    s[0].id = 1;
+    { int j; float v[3] = {90, 85, 88};
+      for (j = 0; j &lt; 3; j++) s[0].score[j] = v[j]; }
+    printf("%s %d %.1f\n", s[0].name, s[0].id, s[0].score[0]);
+    return 0;
+}</pre><p data-page-node-id="aA1Vt3dRGpsbxpvGNde0kP"></p>
+    </div>
+
+    <p class="explain" style="margin-top:14px" data-page-node-id="AegqwU7rb0Kme5fRW34csw"><b data-page-node-id="yB3SeyJPyh2hyyP0QBs1nd">五、编程题 · 参考实现</b></p>
+    <pre class="code" data-page-node-id="QhmUNTh95ImkZxF8PFPCQt">#include &lt;stdio.h&gt;
+
+struct Student {
+    char  name[20];
+    int   id;
+    float scores[3];
+};
+
+/* 8 分：p 指向数组首元素，用 p[i] 或 (p+i)-&gt; 访问第 i 个学生 */
+void inputStudent(struct Student *p, int n)
+{
+    int i, j;
+    for (i = 0; i &lt; n; i++) {
+        printf("请输入第 %d 个学生的姓名: ", i + 1);
+        scanf("%19s", p[i].name);
+        printf("请输入学号: ");
+        scanf("%d", &amp;p[i].id);
+        for (j = 0; j &lt; 3; j++) {
+            printf("请输入第 %d 门课成绩: ", j + 1);
+            scanf("%f", &amp;p[i].scores[j]);
+        }
+    }
+}
+
+/* 10 分：先用下标记录最大值位置，全程不改动原数组 */
+void printMaxScore(struct Student stuArr[], int n)
+{
+    int i, j, max = 0;
+    float sum, maxSum = -1.0f;
+    for (i = 0; i &lt; n; i++) {                /* 不写 i+1，避免越界 */
+        sum = 0;
+        for (j = 0; j &lt; 3; j++) sum += stuArr[i].scores[j];
+        if (sum &gt; maxSum) { maxSum = sum; max = i; }
+    }
+    printf("总分最高者: 姓名 %s  学号 %d  总分 %.1f\n",
+           stuArr[max].name, stuArr[max].id, maxSum);
+}
+
+int main(void)                                /* 6 分 */
+{
+    struct Student stu[2];
+    inputStudent(stu, 2);
+    printMaxScore(stu, 2);
+    return 0;
+}</pre>
+    <p class="explain" data-page-node-id="GPm2VOLA9elpzLJ3QYCb4h"><b data-page-node-id="cH9KWoc8eeGMiLMuM22ksL">评分要点：</b>结构体定义 4 分（不要写 <code data-page-node-id="WU42qsTRZziTZ3ZEmfnBPD">typedef struct Student {...};</code> 这种没有别名的写法）；输入函数 8 分（成员访问、<code data-page-node-id="hE6cCClXgIhibKDzXwcQcK">&amp;</code> 取地址、3 门课循环）；最高分函数 10 分（求 3 门总分、打擂台记下标、不越界、不破坏原数组）；main 6 分（定义数组并正确传参）。</p>
+
+    <p class="notice" style="margin-top:20px" data-page-node-id="YStFHFDy9lvPy7fskCuBuj"><b data-page-node-id="yAjpjSvj0lfHuAg1CsrRVe">使用建议：</b>先限时 90 分钟闭卷完成，再展开答案。若第三、四、五大题仍失分超过一半，建议按「指针与下标 → 字符串与数组 → 结构体与模块化」的顺序回炉，把上一套的编程题独立重写一遍再对答案。</p>
+  </section>
+</article>
+
+
+
+</body></html>
